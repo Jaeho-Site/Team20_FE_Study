@@ -1,0 +1,196 @@
+@import 'tailwindcss';
+
+/*
+  ==============================================
+  🇰🇷 K-콘텐츠 여행 플래너: 디자인 시스템 제안서
+  ==============================================
+  - 팀원 각자 이 파일을 복사하여 자신만의 테마를 만들어보세요.
+  - 예시 컨셉: "깊은 바다와 맑은 하늘의 여행"
+*/
+
+@theme {
+  /*
+  --------------------------------
+  1. 색상 (Colors) 🎨
+  --------------------------------
+  - 서비스의 전체적인 분위기를 결정합니다.
+  - K-콘텐츠에서 영감을 받은 색상 이름을 사용하면 더 좋습니다.
+*/
+  /* 브랜드 컬러 */
+  --color-brand-primary: oklch(55% 0.18 220); /* 깊은 바다색 'Deep-Ocean-Blue' */
+  --color-brand-secondary: oklch(70% 0.12 240); /* 맑은 하늘색 'Clear-Sky-Blue' */
+  --color-brand-accent: oklch(75% 0.15 200); /* 바다 물결색 'Ocean-Wave' */
+
+  /* 상태별 UI 컬러 */
+  --color-success: oklch(70% 0.16 150); /* 자연의 초록색 */
+  --color-warning: oklch(80% 0.15 70); /* 따뜻한 오렌지 */
+  --color-danger: oklch(65% 0.2 20); /* 부드러운 빨간색 */
+
+  /* 배경 & 텍스트 컬러 */
+  --color-background-main: oklch(98% 0.005 220); /* 아주 미묘한 바다 틴트 */
+  --color-background-subtle: oklch(95% 0.01 220); /* 은은한 바다 배경 */
+  --color-text-main: oklch(25% 0.01 220); /* 기본 텍스트 (살짝 바다 톤) */
+  --color-text-subtle: oklch(55% 0.008 220); /* 보조 텍스트 (바다 톤) */
+
+  /*
+  --------------------------------
+  2. 타이포그래피 (Typography) ✍️
+  --------------------------------
+  - 서비스의 가독성과 개성을 표현합니다.
+  - 자간(letter-spacing)은 한글 폰트에서 특히 중요합니다.
+*/
+  --font-family-sans: 'Pretendard Variable', system-ui, sans-serif;
+  --font-family-serif: 'Gowun Batang', serif; /* 감성적인 K-드라마 명대사 등에 사용 */
+
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-display: 2.5rem; /* 40px, 메인 타이틀 */
+
+  --letter-spacing-tight: -0.025em; /* 자간 좁게 */
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em; /* 자간 넓게 */
+
+  /*
+  --------------------------------
+  3. 효과 & 애니메이션 (Effects & Animations) ✨
+  --------------------------------
+  - **(⭐추천)** 서비스에 동적인 느낌을 더해주는 핵심 요소입니다.
+  - 그림자, 전환 효과, 간단한 애니메이션을 미리 정의하면 일관성을 유지할 수 있습니다.
+*/
+  /* 그림자 스타일 */
+  --box-shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --box-shadow-interactive: 0 0 0 3px oklch(from var(--color-brand-primary) l c h / 30%); /* 클릭/포커스 시 */
+
+  /* 전환 효과 */
+  --transition-property-common:
+    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  --transition-duration-fast: 200ms;
+  --transition-timing-function-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Keyframe 애니메이션 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pop-up {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/*
+  --------------------------------
+  4. 컴포넌트 스타일 (Component Styles) 🧩
+  --------------------------------
+  - **(⭐추천)** 반복 사용되는 UI 요소들의 스타일을 미리 정의합니다.
+  - 버튼, 카드, 태그 등 서비스에 필요한 요소들을 생각하며 추가해보세요.
+*/
+@layer utilities {
+  /* 공통 페이지 컨테이너 */
+  .page-container {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 버튼 기본 스타일 */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-semibold focus:outline-none;
+    transition: var(--transition-property-common) var(--transition-duration-fast)
+      var(--transition-timing-function-ease);
+  }
+  .btn-primary {
+    @apply bg-brand-primary text-white;
+    box-shadow: var(--box-shadow-card);
+  }
+  .btn-primary:hover {
+    background-color: oklch(from var(--color-brand-primary) l c h / 90%);
+  }
+  .btn-primary:focus {
+    box-shadow: var(--box-shadow-interactive);
+  }
+  .btn-secondary {
+    @apply bg-brand-secondary text-white;
+    box-shadow: var(--box-shadow-card);
+  }
+  .btn-secondary:hover {
+    background-color: oklch(from var(--color-brand-secondary) l c h / 90%);
+  }
+  .btn-cta {
+    /* Call To Action, 가장 중요한 버튼 */
+    @apply bg-brand-accent text-text-main font-bold;
+    box-shadow: var(--box-shadow-card);
+    transform: scale(1);
+    transition: all var(--transition-duration-fast) var(--transition-timing-function-ease);
+  }
+  .btn-cta:hover {
+    transform: scale(1.05);
+  }
+  .btn-outline {
+    @apply border-2 border-brand-primary text-brand-primary bg-transparent;
+  }
+  .btn-outline:hover {
+    @apply bg-brand-primary text-white;
+  }
+
+  /* 입력 필드 스타일 */
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-text-main placeholder-text-subtle;
+    transition: var(--transition-property-common) var(--transition-duration-fast)
+      var(--transition-timing-function-ease);
+  }
+  .input:focus {
+    @apply border-brand-primary outline-none;
+    box-shadow: var(--box-shadow-interactive);
+  }
+  .input:disabled {
+    @apply bg-background-subtle text-text-subtle cursor-not-allowed;
+  }
+
+  /* K-콘텐츠 카드 (맛집, 드라마 촬영지 등) */
+  .k-card {
+    @apply bg-white rounded-lg overflow-hidden;
+    box-shadow: var(--box-shadow-card);
+    transition: all var(--transition-duration-fast) var(--transition-timing-function-ease);
+  }
+  .k-card:hover {
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* 태그 (e.g., #K-POP, #촬영지, #한식) */
+  .k-tag {
+    @apply inline-block bg-background-subtle text-text-subtle text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+  .k-tag-primary {
+    @apply bg-brand-primary/20 text-brand-primary;
+  }
+  .k-tag-secondary {
+    @apply bg-brand-secondary/20 text-brand-secondary;
+  }
+  .k-tag-accent {
+    @apply bg-brand-accent/20 text-text-main;
+  }
+
+  /* 애니메이션 유틸리티 */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+  .animate-pop-up {
+    animation: pop-up 0.3s ease-out;
+  }
+}
