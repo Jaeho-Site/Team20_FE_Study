@@ -1,4 +1,5 @@
 import { ButtonDemo, InputDemo, CardDemo, TagDemo } from './demos';
+import { ThemeChangeButton } from './components';
 
 export const App = () => {
   return (
@@ -14,6 +15,8 @@ export const App = () => {
           </p>
         </div>
       </header>
+
+      <ThemeChangeButton/>
 
       {/* 데모 컴포넌트들 모아놓은 곳 */}
       <main className="page-container py-8 space-y-12">

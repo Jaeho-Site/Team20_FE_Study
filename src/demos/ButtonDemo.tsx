@@ -21,6 +21,18 @@ export const ButtonDemo = () => {
           <h3 className="text-sm font-medium text-text-subtle">Outline</h3>
           <Button variant="outline">더보기</Button>
         </div>
+        <div className="space-y-2">
+          <h3 className="text-sm font-medium text-text-subtle">Success</h3>
+          <Button variant="success">성공</Button>
+        </div>
+        <div className="space-y-2">
+          <h3 className="text-sm font-medium text-text-subtle">Warning</h3>
+          <Button variant="warning">주의</Button>
+        </div>
+        <div className="space-y-2">
+          <h3 className="text-sm font-medium text-text-subtle">Danger</h3>
+          <Button variant="danger">위험</Button>
+        </div>
       </div>
     </section>
   );

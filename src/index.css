@@ -145,6 +145,57 @@
     @apply bg-brand-primary text-white;
   }
 
+  .btn-success {
+    @apply inline-flex items-center justify-center rounded-md font-semibold focus:outline-none;
+    @apply bg-success text-text-main; /* 녹청 배경 + 어두운 텍스트로 안정된 대비 */
+    box-shadow: var(--box-shadow-card);
+    transition: var(--transition-property-common) var(--transition-duration-fast)
+      var(--transition-timing-function-ease);
+  }
+  .btn-success:hover {
+    background-color: oklch(from var(--color-success) l c h / 90%);
+  }
+  .btn-success:focus {
+    box-shadow: var(--box-shadow-interactive);
+  }
+  .btn-success:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+  .btn-warning {
+    @apply inline-flex items-center justify-center rounded-md font-semibold focus:outline-none;
+    @apply bg-warning text-text-main; /* 밝은 황색엔 어두운 텍스트가 가독성 좋음 */
+    box-shadow: var(--box-shadow-card);
+    transition: var(--transition-property-common) var(--transition-duration-fast)
+      var(--transition-timing-function-ease);
+  }
+  .btn-warning:hover {
+    /* 동일 색상에서 약간의 농도(불투명도)만 높여 강조 */
+    background-color: oklch(from var(--color-warning) l c h / 90%);
+  }
+  .btn-warning:focus {
+    box-shadow: var(--box-shadow-interactive);
+  }
+  .btn-warning:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-md font-semibold focus:outline-none;
+    @apply bg-danger text-white; /* 적색 계열은 화이트 텍스트 대비가 우수 */
+    box-shadow: var(--box-shadow-card);
+    transition: var(--transition-property-common) var(--transition-duration-fast)
+      var(--transition-timing-function-ease);
+  }
+  .btn-danger:hover {
+    background-color: oklch(from var(--color-danger) l c h / 90%);
+  }
+  .btn-danger:focus {
+    box-shadow: var(--box-shadow-interactive);
+  }
+  .btn-danger:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
   /* 입력 필드 스타일 */
   .input {
     @apply w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-text-main placeholder-text-subtle;
@@ -193,4 +244,88 @@
   .animate-pop-up {
     animation: pop-up 0.3s ease-out;
   }
+}
+
+/* =========================================================
+   THEME OVERRIDES (data-theme 기반 스위칭)
+   - data-theme="sea"       : 바다 테마
+   - data-theme="obang"     : 오방색 테마
+   - data-theme="mugunghwa" : 무궁화 테마
+   - data-theme="cheongja"  : 청자 테마
+   ========================================================= */
+
+/* 1) 바다 테마 (청 중심) */
+:root[data-theme="sea"] {
+  /* 브랜드 컬러 */
+  --color-brand-primary: oklch(55% 0.18 220); /* 깊은 바다색 'Deep-Ocean-Blue' */
+  --color-brand-secondary: oklch(70% 0.12 240); /* 맑은 하늘색 'Clear-Sky-Blue' */
+  --color-brand-accent: oklch(75% 0.15 200); /* 바다 물결색 'Ocean-Wave' */
+
+  /* 상태별 UI 컬러 */
+  --color-success: oklch(70% 0.16 150); /* 자연의 초록색 */
+  --color-warning: oklch(80% 0.15 70); /* 따뜻한 오렌지 */
+  --color-danger: oklch(65% 0.2 20); /* 부드러운 빨간색 */
+
+  /* 배경 & 텍스트 컬러 */
+  --color-background-main: oklch(98% 0.005 220); /* 아주 미묘한 바다 틴트 */
+  --color-background-subtle: oklch(95% 0.01 220); /* 은은한 바다 배경 */
+  --color-text-main: oklch(25% 0.01 220); /* 기본 텍스트 (살짝 바다 톤) */
+  --color-text-subtle: oklch(55% 0.008 220); /* 보조 텍스트 (바다 톤) */
+}
+
+/* 2) 오방색 테마 (청 중심) */
+:root[data-theme="obang"] {
+  /* 브랜드 컬러 */
+  --color-brand-primary:   oklch(55% 0.20 230); /* 청(靑, 동쪽/봄) – 새로움과 생명력 */
+  --color-brand-secondary: oklch(65% 0.15 240); /* 청록 – 상쾌하고 맑은 보조 */
+  --color-brand-accent:    oklch(75% 0.12 220); /* 연청 – 청량한 포인트 */
+
+  /* 상태별 UI 컬러 */
+  --color-success: oklch(68% 0.12 150); /* 백(白, 서쪽/가을) – 순수와 청결 */
+  --color-warning: oklch(75% 0.15 95);  /* 황(黃, 중앙) – 균형과 풍요 */
+  --color-danger:  oklch(60% 0.20 20);  /* 적(赤, 남쪽/여름) – 열정과 활력 */
+
+  /* 배경 & 텍스트 컬러 */
+  --color-background-main:   oklch(98% 0.005 220);  /* 아주 미묘한 바다 틴트 */
+  --color-background-subtle: oklch(93% 0.008 220); /* 옅은 청색 보조 배경 */
+  --color-text-main:         oklch(20% 0.01 260);  /* 흑(黑, 북쪽/겨울) – 깊이와 지혜 */
+  --color-text-subtle:       oklch(50% 0.01 220);  /* 옅은 청색 텍스트 – 부드러운 보조 */
+}
+
+/* 3) 무궁화 테마 */
+:root[data-theme="mugunghwa"] {
+  /* 브랜드 컬러 */
+  --color-brand-primary:   oklch(70% 0.14 320); /* 라일락 – 우아하고 친화적인 메인 */
+  --color-brand-secondary: oklch(60% 0.12 330); /* 라벤더 – 차분한 보조 */
+  --color-brand-accent:    oklch(88% 0.06 325); /* 연보라 화이트 – 맑은 포인트 */
+
+  /* 상태별 UI 컬러 */
+  --color-success: oklch(68% 0.12 150); /* 산뜻한 녹청 – 균형 */
+  --color-warning: oklch(86% 0.12 85);  /* 라이트 골드 – 온화한 강조 */
+  --color-danger:  oklch(58% 0.16 20);  /* 소프트 레드 – 과하지 않은 경고 */
+
+  /* 배경 & 텍스트 컬러 */
+  --color-background-main:   oklch(98% 0.005 220);  /* 아주 미묘한 바다 틴트 */
+  --color-background-subtle: oklch(96% 0.010 325); /* 연보랏빛 배경 – 부드러운 분위기 */
+  --color-text-main:         oklch(21% 0.04 325);  /* 미드 퍼플 텍스트 – 안정된 가독성 */
+  --color-text-subtle:       oklch(46% 0.03 325);  /* 라이트 퍼플 – 은은한 보조 텍스트 */
+}
+
+/* 4) 청자 테마 */
+:root[data-theme="cheongja"] {
+  /* 브랜드 컬러 */
+  --color-brand-primary:   oklch(70% 0.10 190); /* 청자 옥빛 – 은은하고 단정한 메인 */
+  --color-brand-secondary: oklch(55% 0.12 210); /* 짙은 청록 – 안정감과 깊이 */
+  --color-brand-accent:    oklch(85% 0.06 180); /* 옅은 비취빛 – 맑고 고급스러운 포인트 */
+
+  /* 상태별 UI 컬러 */
+  --color-success: oklch(65% 0.12 150); /* 자연스러운 녹청 */
+  --color-warning: oklch(80% 0.12 95);  /* 황토/따뜻한 노랑 (보조용) */
+  --color-danger:  oklch(55% 0.18 20);  /* 은은한 적갈 (보조 대비용) */
+
+  /* 배경 & 텍스트 컬러 */
+  --color-background-main:   oklch(98% 0.005 220); /* 아주 미묘한 바다 틴트 */
+  --color-background-subtle: oklch(96% 0.01 190);  /* 은은한 청빛 배경 */
+  --color-text-main:         oklch(22% 0.01 210);  /* 짙은 청록 텍스트 */
+  --color-text-subtle:       oklch(48% 0.01 210);  /* 연한 청록 보조 텍스트 */
 }

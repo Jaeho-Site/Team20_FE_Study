@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'cta' | 'outline';
+  variant?: 'primary' | 'secondary' | 'cta' | 'outline' | 'success' | 'warning' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   children: ReactNode;
 }
@@ -20,6 +20,9 @@ export const Button = ({
     secondary: 'btn-secondary',
     cta: 'btn-cta',
     outline: 'btn-outline',
+    success: 'btn-success',
+    warning: 'btn-warning',
+    danger: 'btn-danger',
   };
 
   const sizeClasses = {
